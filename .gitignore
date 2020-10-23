@@ -1,1 +1,4 @@
 /config/slackcred.py
+/config/credentials.json
+/config/sheetconfig.py
+/config/token.pickle
