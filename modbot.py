@@ -21,7 +21,6 @@ def modbot_message(**payload):
 
     # Ignore things I am sending
     if data['user'] == SUID:
-        print('i see me')
         return True
 
     # Ignore things not in the channels I monitor
@@ -61,7 +60,7 @@ def modbot_react(**payload):
         return True
 
     # Ignore threads
-    # This does not work for reactions.
+    # This does not work for reactions.  need to use webapi.
 #    if 'thread_ts' in data:
 #        return True
 
@@ -76,36 +75,6 @@ def modbot_react(**payload):
     reason = 'Reaction {}  tagged by Mod  <@{}>'.format(data['reaction'], data['user'])
     notify_mods(web_client, data['item_user'], reason)
     return True
-
-
-    # bot_id = ''
-    # reo = re.search(r"\<@([A-Za-z0-9]+)\>", data.get('text'))
-    # if reo:
-    #     bot_id =reo.groups()[0]
-    #
-    # # If a message is not send by the bot
-    # if bot_id == SUID:
-    #     channel_id = data["channel"]
-    #
-    #     # Extracting message send by the user on the slack
-    #     text = data.get("text", "")
-    #     text = text.split(">")[-1].strip()
-    #
-    #     response = ""
-    #     if "biden" in text.lower():
-    #         user = data.get("user", "")
-    #         response = f"Hi <@{user}>! I am Riden with Biden :)"
-    #     elif "trump" in text.lower():
-    #         user = data.get("user", "")
-    #         response = f"Hi <@{user}>! NO MORE YEARS :("
-    #     else:
-    #         activity_json_response = requests.get("http://www.boredapi.com/api/activity/").json()
-    #         activity = activity_json_response['activity']
-    #         response = "You seem bored.  Why don't you ...  "+str(activity)
-    #
-    #     # Sending message back to slack
-    #     web_client.chat_postMessage(channel=channel_id, text=response)
-
 
 try:
     rtm_client = slack.RTMClient(token=TOKEN)
