@@ -62,8 +62,9 @@ if __name__ == '__main__':
 
     uplist = []
     for r in newtablechk:
-        if r[0] not in havelist:
-            uplist.append(r)
+        if r[0] != '' and r[1] != '':
+            if r[0] not in havelist:
+                uplist.append(r)
     print_stat('Upload table', len(uplist))
 
     if uplist:
